@@ -20,7 +20,7 @@ jobs:
       run: dotnet build Xunit.Runner.Http.sln -c Release
   publish: 
     runs-on: self-hosted
-    needs: [Test]
+    needs: [Build]
     steps:
       - name: Publish Nuget Packages
         run: |
