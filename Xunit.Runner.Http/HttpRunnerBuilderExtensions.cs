@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Xunit.Runners.Http;
 
+namespace Microsoft.Extensions.DependencyInjection;
+
 public static class HttpRunnerBuilderExtensions
 {
     public static void AddXunitHttpTestRunner(this IServiceCollection services, Assembly testAssembly)

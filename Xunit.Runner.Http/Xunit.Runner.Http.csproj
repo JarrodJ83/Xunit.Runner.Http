@@ -1,9 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+	  <VersionPrefix>0.1.0</VersionPrefix>
+	  <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <Authors>Jarrod Johnson (@JarrodJ83)</Authors>
+	  <Owners>Jarrod Johnson (@JarrodJ83)</Owners>
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	  <ProjectUrl>https://github.com/JarrodJ83/LowKey</ProjectUrl>
+	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
+	  <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -11,5 +19,6 @@
 		<PackageReference Include="microsoft.aspnetcore.openapi" Version="8.0.0" />
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.runner.utility" Version="2.6.2" />
+		<None Include="..\Readme.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 </Project>

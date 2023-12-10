@@ -1,0 +1,64 @@
+name: .NET
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Build
+      run: dotnet build LowKey.sln -c Release
+  test: 
+    runs-on: self-hosted
+    needs: [build]
+    steps:
+      - name: Test
+        run: dotnet test LowKey.sln  -c Release --no-build --verbosity normal
+  publish: 
+    runs-on: self-hosted
+    needs: [Test]
+    steps:
+      - name: Publish Nuget Packages
+        run: |
+            $branchParts = "${{ github.ref }}".Split('/');
+            $branch = $branchParts[$branchParts.Length - 1]
+
+            $prerelease = ""
+
+            if($branch -ne "main") {
+                $prerelease = $branch.Replace("/", "-") + ".${{ github.run_number }}"
+            }
+
+            Write-Host "Branch: $branch"
+            Write-Host "Pre-Release: $prerelease"
+
+            $output = "packages"
+
+            if($prerelease -ne "") {
+                Write-Host "Branch: Creating Prerelease $prerelease packages"
+                dotnet pack LowKey.Data/LowKey.Data.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
+                dotnet pack LowKey.Data.Sql/LowKey.Data.Sql.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
+                dotnet pack LowKey.Data.MySql/LowKey.Data.MySql.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
+                dotnet pack LowKey.Data.Postgres/LowKey.Data.Postgres.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
+                dotnet pack LowKey.Data.Extensions.Hosting/LowKey.Data.Extensions.Hosting.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
+                dotnet pack LowKey.Data.MultiTenancy.ClaimBased/LowKey.Data.MultiTenancy.ClaimBased.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
+            } else {
+                dotnet pack LowKey.Data/LowKey.Data.csproj -c Release --no-build --no-restore -o $output
+                dotnet pack LowKey.Data.Sql/LowKey.Data.Sql.csproj -c Release --no-build --no-restore -o $output
+                dotnet pack LowKey.Data.MySql/LowKey.Data.MySql.csproj -c Release --no-build --no-restore -o $output
+                dotnet pack LowKey.Data.Postgres/LowKey.Data.Postgres.csproj -c Release --no-build --no-restore -o $output
+                dotnet pack LowKey.Data.Extensions.Hosting/LowKey.Data.Extensions.Hosting.csproj -c Release --no-build --no-restore -o $output
+                dotnet pack LowKey.Data.MultiTenancy.ClaimBased/LowKey.Data.MultiTenancy.ClaimBased.csproj -c Release --no-build --no-restore -o $output
+            }
+
+            dotnet nuget push "**/$output/**" --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
