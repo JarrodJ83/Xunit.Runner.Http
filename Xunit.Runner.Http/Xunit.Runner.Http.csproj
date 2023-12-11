@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<!--<PackageReference Include="microsoft.aspnetcore.openapi" Version="6.0.0" />-->
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.runner.utility" Version="2.6.2" />
 		<None Include="..\Readme.md" Pack="true" PackagePath="\"/>
