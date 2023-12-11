@@ -42,7 +42,10 @@ jobs:
                 Write-Host "Branch: Creating Prerelease $prerelease packages"
                 dotnet pack Xunit.Runner.Http/Xunit.Runner.Http.csproj -c Release --no-build --no-restore --version-suffix $prerelease -o $output
             } else {
+                Write-Host "Branch: Creating Release packages"
                 dotnet pack Xunit.Runner.Http/Xunit.Runner.Http.csproj -c Release --no-build --no-restore -o $output
             }
+
+            ls $output
 
             dotnet nuget push "**/$output/**" --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
