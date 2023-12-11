@@ -9,7 +9,7 @@
 	  <Owners>Jarrod Johnson (@JarrodJ83)</Owners>
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	  <ProjectUrl>https://github.com/JarrodJ83/LowKey</ProjectUrl>
+	  <ProjectUrl>https://github.com/JarrodJ83/Xunit.Runner.Http</ProjectUrl>
 	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
 	  <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
