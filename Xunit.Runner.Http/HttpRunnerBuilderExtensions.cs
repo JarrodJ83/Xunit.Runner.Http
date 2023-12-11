@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Xunit.Runners.Http;
@@ -28,8 +27,7 @@ public static class HttpRunnerBuilderExtensions
                 var nameOfTestToRun = request.Path.Value.TrimStart('/');
 
                 return httpTestTrigger.RunTest(nameOfTestToRun);
-            }).WithName(testCase.DisplayName)
-            .WithOpenApi();
+            }).WithName(testCase.DisplayName);
         }
     }
 }
