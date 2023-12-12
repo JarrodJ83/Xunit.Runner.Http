@@ -22,7 +22,7 @@ public class MyTestClass
 ![image info](./list_tests.png)
 
 ### Passing Test
-![image info](./passing.png)
+![image info](./success.png)
 
 ### Failing Test
 ![image info](./failure.png)
