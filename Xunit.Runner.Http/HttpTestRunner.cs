@@ -6,8 +6,8 @@ namespace Xunit.Runners.Http;
 
 internal class HttpTestRunner
 {
-    ManualResetEvent finished = new ManualResetEvent(false);
-    ManualResetEvent discoveryComplete = new ManualResetEvent(false);
+    private readonly ManualResetEvent finished = new ManualResetEvent(false);
+    private readonly ManualResetEvent discoveryComplete = new ManualResetEvent(false);
     private readonly ILogger _logger;
     private readonly CustomAssemblyRunner _runner;
 
