@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <VersionPrefix>0.1.0</VersionPrefix>
+	  <VersionPrefix>1.0.0</VersionPrefix>
 	  <TargetFramework>net6.0</TargetFramework>
       <ImplicitUsings>enable</ImplicitUsings>
       <Nullable>enable</Nullable>
@@ -13,6 +13,8 @@
 	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
 	  <PackageReadmeFile>Readme.md</PackageReadmeFile>
 	  <IsPackable>true</IsPackable>
+	  <Description>Enables you to run your tests via http requests instead of the Test Explorer which enables you to debug your tests at the same time as the system under test.
+	  </Description>
   </PropertyGroup>
 
 	<ItemGroup>
