@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <VersionPrefix>1.0.0</VersionPrefix>
+	  <VersionPrefix>2.0.0</VersionPrefix>
 	  <TargetFramework>net6.0</TargetFramework>
       <ImplicitUsings>enable</ImplicitUsings>
       <Nullable>enable</Nullable>
@@ -19,8 +19,8 @@
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<PackageReference Include="xunit" Version="2.4.2" />
-		<PackageReference Include="xunit.runner.utility" Version="2.6.2" />
-		<None Include="..\Readme.md" Pack="true" PackagePath="\"/>
+		<PackageReference Include="xunit" Version="2.8.0" />
+		<PackageReference Include="xunit.runner.utility" Version="2.8.0" />
+		<None Include="..\Readme.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
