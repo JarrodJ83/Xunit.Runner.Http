@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <VersionPrefix>0.1.0</VersionPrefix>
+	  <VersionPrefix>2.0.0</VersionPrefix>
 	  <TargetFramework>net6.0</TargetFramework>
       <ImplicitUsings>enable</ImplicitUsings>
       <Nullable>enable</Nullable>
@@ -13,12 +13,14 @@
 	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
 	  <PackageReadmeFile>Readme.md</PackageReadmeFile>
 	  <IsPackable>true</IsPackable>
+	  <Description>Enables you to run your tests via http requests instead of the Test Explorer which enables you to debug your tests at the same time as the system under test.
+	  </Description>
   </PropertyGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<PackageReference Include="xunit" Version="2.4.2" />
-		<PackageReference Include="xunit.runner.utility" Version="2.6.2" />
-		<None Include="..\Readme.md" Pack="true" PackagePath="\"/>
+		<PackageReference Include="xunit" Version="2.8.0" />
+		<PackageReference Include="xunit.runner.utility" Version="2.8.0" />
+		<None Include="..\Readme.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>

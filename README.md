@@ -1,10 +1,23 @@
 # Xunit.Runner.Http
-Enables you to run your tests via http requests.
+Enables you to run your tests via http requests instead of the Test Explorer.
 
 ## Why?
-The main catalyst for this library is to enable a way to easily run & debug Acceptance tests alongside the system they're testing. In Visual Studio, for example, if you're running an API there is no way for you to trigger and debug an acceptance test you want to run against the API. This is particularly annoying if you're trying to practice ATDD. In this case your only options are usually to either run two instances of Visual Studio, one with your API running and one where you debug your acceptance tests or run your API without debugging so that you can debug your acceptance tests. Neither options is pleasant or straightfoward. 
+When writing acceptance/integration tests it's useful to be able to debug the system under test and the tests themselves at the same time. I've found that the current tooling doesn't provide a great developer experience for doing so.
 
-With this package you'll be able to start your API and your acceptance test projects at the same time. On startup of your acceptnace test project we'll discover your tests and expose a Get endpoint for each of them. If you have swagger UI enabled you'll be able to invoke your tests through that. Otherwise you can simply invoke them by doing a get to fully qualified name of your test method. For example the following test will be expose at `/MyNamespace.MyTestClass.MyTestMethod`:
+### Alternatives
+These are the alternatives I've used in the past and found to be lacking.
+
+#### Microsoft.AspNetCore.TestHost
+I found that this option has a few downfalls for the way I like to work. 
+
+* Requires application configuration to be in the test project. This usually leads to a lot of duplication of configuration or clunky workarounds.
+* Acceptance tests written with TestHost can't be run against a live environment like in a CI/CD pipeline against an ephemeral environment.
+
+#### Two Visausl Studio Instances
+By opening the same solution in two instances of Visual Studio you can run the system under test in debug mod in one instance and use the Test Explorer to debug your tests in another. This is clunky at best.
+
+## Overview
+This package will automatically discover your tests and expose them using Minimal API Get endpoints. You can then invoke your tests by doing a get request to the fully qualified name of your test method. For example if you have the following test:
 
 ```
 namesapce MyNamespace;
@@ -17,6 +30,8 @@ public class MyTestClass
 	}
 }
 ```
+
+You can invoke it by doing a GET request to `/MyNamespace.MyTestClass.MyTestMethod`. The response will contain either "Passed" or the xUnit failure message you're used to seeing in Test Explorer.
 
 ### List of Tests in SwaggerUI
 ![image info](./list_tests.png)
@@ -41,3 +56,4 @@ Tell the application to use the test runner:
 That's it! 
 
 See the [Samples](samples) for a runnable example. 
+
